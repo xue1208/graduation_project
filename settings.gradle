@@ -1,0 +1,6 @@
+rootProject.name = 'user-0228'
+include 'usr-db'
+include 'usr-application'
+include 'usr-core'
+include 'usr-gateway'
+

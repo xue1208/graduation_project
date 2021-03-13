@@ -1,0 +1,85 @@
+plugins{
+    id 'nu.studer.jooq' version '3.0.2'
+}
+dependencies {
+    compile("org.springframework:spring-tx")
+    compile("org.springframework:spring-jdbc")
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+    // https://mvnrepository.com/artifact/org.springframework/spring-jdbc
+    //implementation group: 'org.springframework', name: 'spring-jdbc', version: '5.2.12.RELEASE'
+// https://mvnrepository.com/artifact/mysql/mysql-connector-java
+    implementation group: 'mysql', name: 'mysql-connector-java', version: '8.0.18'
+// https://mvnrepository.com/artifact/com.alibaba/druid
+    compile group: 'com.alibaba', name: 'druid', version: '1.1.10'
+    compile('org.jooq:jooq:3.11.9')
+    compile group: 'org.jooq', name: 'jooq-meta', version: '3.11.9'
+    jooqRuntime('mysql:mysql-connector-java:5.1.44')
+}
+jooq {
+    version = '3.11.9'
+    edition = 'OSS'
+    db(sourceSets.main) {
+        jdbc {
+            driver = 'com.mysql.jdbc.Driver'
+            url = 'jdbc:mysql://localhost:3306/graduation'
+            user = 'root'
+            password = '981208'
+        }
+        generator {
+            name = 'org.jooq.codegen.DefaultGenerator'
+            strategy {
+                name = 'org.jooq.codegen.DefaultGeneratorStrategy'
+                // ...
+            }
+            database  {
+                name = 'org.jooq.meta.mysql.MySQLDatabase'
+                inputSchema = 'graduation'
+                outputSchemaToDefault = true
+//                includes='.*'
+                //excludes='clue_error_message|commerce_assign_detail|commerce_assign_supply|oppty_info|oppty_info_all|async_message|conversion_receive|package_assign_count|commerce_assign_stock'
+
+                forcedTypes {
+                    forcedType {
+                        name = 'INTEGER'
+                        expression = '.*'
+                        types = 'TINYINT'
+                    }
+                }
+            }
+            generate {
+                deprecated = false
+                records = true
+                pojos = true
+//                fluentSetters = true
+                daos = true
+            }
+            strategy {
+                name = null
+                matchers {
+                    tables {
+                        table {
+                            pojoClass {
+                                transform = 'PASCAL'
+                                expression = '\$0_Entity'
+                            }
+                            daoClass {
+                                transform = 'PASCAL'
+                                expression = '\$0_Entity_Dao'
+                            }
+                        }
+
+                    }
+                }
+            }
+            target {
+                packageName = 'com.graduation.user'
+                directory = 'src/main/java'
+            }
+        }
+    }
+}
+
+// removes the task dependency from compileJava to generateSampleJooqSchemaSource
+project.tasks.getByName('compileJava').dependsOn -= 'generateDbJooqSchemaSource'
+project.tasks.getByName('clean').dependsOn -= 'cleanGenerateDbJooqSchemaSource'
+project.tasks.getByName('generateDbJooqSchemaSource').outputs.upToDateWhen {false}

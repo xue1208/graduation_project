@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>登录页面</title>
+</head>
+<body>
+用户登录
+<h2 th:text="${msg}" style="color: brown"></h2>
+<form action="/shiro/login" method="get">
+    学号：<input name="name" value="22" type="text"/><br/>
+    密码：<input name="password" type="password"/><br>
+    <input type="submit" value="提交"/>
+</form>
+</body>
+</html>

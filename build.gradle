@@ -1,3 +1,4 @@
+import org.springframework.boot.gradle.tasks.run.BootRun
 buildscript {
     ext {
         springBootVersion = '2.1.9.RELEASE'
@@ -50,9 +51,22 @@ allprojects {
         from sourceSets.main.allJava
     }
 
-    jar {
-        manifest {
-            attributes 'Main-Class': 'com.graduation.user.Application'
-        }
+    shadow{
+
+    }
+//    jar {
+//        manifest {
+//            attributes 'Main-Class': 'com.graduation.user.Application'
+//        }
+//    }
+    task production(type: BootRun)  {
+        classpath = sourceSets.main.runtimeClasspath
+        main= 'com.graduation.user.Application'
+        systemProperty 'spring.profiles.active', 'prod'
+    }
+    task dev(type: BootRun)  {
+        classpath = sourceSets.main.runtimeClasspath
+        main= 'com.graduation.user.Application'
+        systemProperty 'spring.profiles.active', 'dev'
     }
 }

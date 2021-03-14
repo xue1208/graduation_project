@@ -2,8 +2,6 @@ FROM java:8
 
 EXPOSE 7001
 
-RUN mkdir /docker/project
-
 ADD /usr-application/build/libs/usr-application-1.0-SNAPSHOT.jar user.jar
 
 WORKDIR /docker/project

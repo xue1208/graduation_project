@@ -1,17 +1,11 @@
-#spring:
-#  datasource:
-#    driver-class-name: com.mysql.cj.jdbc.Driver
-#    username: root
-#    password: 981208
-#    type: com.alibaba.druid.pool.DruidDataSource
-#    url: jdbc:mysql://localhost:3306/graduation?zeroDateTimeBehavior=convertToNull&useUnicode=yes&characterEncoding=UTF8&serverTimezone=Asia/Shanghai
-
 druid:
-  driver-class-name: com.mysql.cj.jdbc.Driver
-  username: root
-  password: 981208
-  url: jdbc:mysql://localhost:3306/graduation?zeroDateTimeBehavior=convertToNull&useUnicode=yes&characterEncoding=UTF8&serverTimezone=Asia/Shanghai
-
+  driver-class-name: ${druid.driver-class-name}
+  username: ${druid.username}
+  password: ${druid.password}
+  url: ${druid.url}
 
 server:
   port: 7001
+spring:
+  profiles:
+    active: dev

@@ -1,5 +1,5 @@
 plugins{
-    id 'org.springframework.boot' version '2.1.9.RELEASE'
+    id 'org.springframework.boot'
 }
 dependencies {
 // https://mvnrepository.com/artifact/org.apache.shiro/shiro-spring
@@ -9,3 +9,4 @@ dependencies {
     compile project(":usr-core")
     //compile group: 'com.alibaba', name: 'druid', version: '1.1.10'
 }
+

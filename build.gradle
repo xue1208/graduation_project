@@ -6,6 +6,7 @@ buildscript {
     }
 
     repositories {
+        maven{url 'http://maven.aliyun.com/nexus/content/groups/public/'}
         mavenLocal()
         mavenCentral()
     }
@@ -13,11 +14,13 @@ buildscript {
     dependencies {
         classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
         classpath("io.spring.gradle:dependency-management-plugin:${springBootManagementVersion}")
+        classpath("com.github.jengelman.gradle.plugins:shadow:1.2.3")
     }
 }
 
 allprojects {
     apply plugin: 'java'
+    apply plugin: 'com.github.johnrengelman.shadow'
     //apply plugin: 'org.springframework.boot'
     apply plugin: 'io.spring.dependency-management'
 
@@ -26,6 +29,7 @@ allprojects {
     sourceCompatibility = '1.8'
 
     repositories {
+        maven{url 'http://maven.aliyun.com/nexus/content/groups/public/'}
         mavenLocal()
         mavenCentral()
     }
@@ -44,5 +48,11 @@ allprojects {
 
     task sourceJar(type: Jar) {
         from sourceSets.main.allJava
+    }
+
+    jar {
+        manifest {
+            attributes 'Main-Class': 'com.graduation.user.Application'
+        }
     }
 }

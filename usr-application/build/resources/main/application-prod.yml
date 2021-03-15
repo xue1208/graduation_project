@@ -2,4 +2,4 @@ druid:
   driver-class-name: com.mysql.cj.jdbc.Driver
   username: root
   password: 123456
-  url: jdbc:mysql://localhost:3306/graduation?zeroDateTimeBehavior=convertToNull&useUnicode=yes&characterEncoding=UTF8&serverTimezone=Asia/Shanghai
+  url: jdbc:mysql://123.56.48.135:3307/graduation?zeroDateTimeBehavior=convertToNull&useUnicode=yes&characterEncoding=UTF8&serverTimezone=Asia/Shanghai

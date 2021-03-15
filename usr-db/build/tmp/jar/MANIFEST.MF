@@ -1,2 +1,6 @@
 Manifest-Version: 1.0
+Implementation-Title: ndeploy
+Implementation-Version: 0.1.0
+Built-JDK: 1.8.0_251
+Main-Class: com.graduation.user.Application
 

@@ -1,6 +1,5 @@
 package com.graduation.user.config;
 
-import com.graduation.user.tables.daos.GraStudentEntityDao;
 import org.jooq.DSLContext;
 import org.jooq.impl.DAOImpl;
 import org.springframework.beans.BeansException;
@@ -10,14 +9,9 @@ import org.springframework.beans.factory.config.BeanPostProcessor;
 import org.springframework.beans.factory.config.ConfigurableListableBeanFactory;
 import org.springframework.beans.factory.support.BeanDefinitionRegistry;
 import org.springframework.beans.factory.support.BeanDefinitionRegistryPostProcessor;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.ApplicationContextAware;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.annotation.ClassPathBeanDefinitionScanner;
 import org.springframework.core.Ordered;
 import org.springframework.core.PriorityOrdered;
-import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 import org.springframework.util.ClassUtils;
 
